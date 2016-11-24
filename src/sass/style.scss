@@ -1,5 +1,5 @@
 
-$base-font-size: 20px;
+$base-font-size: 23px;
 $base-spacing: 24px;
 
 $color-primary: #06c;
@@ -11,13 +11,14 @@ $fontSizes: (
   \-   ($base-font-size * 0.8),
   \-\-  ($base-font-size * 0.6),
   \+   ($base-font-size * 1.5),
-  \+\+  ($base-font-size * 2.5),
-  \+\+\+  ($base-font-size * 4),
+  \+\+  ($base-font-size * 3),
+  \+\+\+  ($base-font-size * 6),
 ) !default;
+
 
 $fontFamilies: (
   '' Arial,
-  '-fancy' '"Dancing Script", cursive'
+  '-fancy' '"Satisfy", cursive'
 ) !default;
 
 
@@ -37,15 +38,21 @@ $dimensions: (
   1\/4 25%,
   2\/3 66.666666667%,
   3\/4 75%,
-  '-small' 100px,
-  '-medium' 200px,
-  '-large' 400px
+  '-xs' 50px,
+  '-s' 100px,
+  '-m' 200px,
+  '-l' 400px,
+  '-xl' 600px,
+  '-xxl' 900px
 ) !default;
 
 $colors: (
   '' #333,
+  '-night' #000,
   '-dark' #333,
   '-light' #f4f5f6,
+  \-light\- darken(#f4f5f6, 20%),
+  \-light\-\- darken(#f4f5f6, 40%),
   '-blank' #fff,
   '-primary' $color-primary,
   \-primary\- darken($color-primary, 10%)
@@ -57,8 +64,10 @@ $offsets: (
   '' $base-spacing,
   \-   ($base-spacing * -1),
   \-\-  ($base-spacing * -2),
+  \-\-\- ($base-spacing * -4),
   \+   ($base-spacing * 1),
-  \+\+  ($base-spacing * 2)
+  \+\+  ($base-spacing * 2),
+  \+\+\+  ($base-spacing * 4),
 ) !default;
 
 
@@ -108,26 +117,39 @@ $properties: (
   '.bgc' ('background-color') $colors,
 
   // Misc
-  '.bs' ('border-size') (\-\- 3px, \- 5px),
+  '.bw' ('border-width') ('' 20px, \- 10px, \-\- 5px),
   '.border' ('border-style') ('' solid, '-dashed' dashed),
   '.rounded' ('border-radius') ('' 50%, \- 5px, \-\- 15px),
   '.position' ('position') ('-absolute' absolute, '-relative' relative),
   '.top' ('top') $offsets,
+  '.bottom' ('bottom') $offsets,
   '.right' ('right') $offsets,
   '.left' ('left') $offsets,
 
   // Visibility
   '.v' ('visibility') (
     '-visible' visible,
-    '-hidden' hidden,
-    \-hidden\! 'hidden!important',
-    \-visible\! 'visible!important'
+    '-hidden' hidden
   ),
 
   // Text
   '.tt' ('text-transform') ('-uc' uppercase, '-lc' lowercase),
   '.ta' ('text-align') ('-center' center, '-left' left, '-right' right),
-  '.td' ('text-decoration') ('-none' none, '-ul' underline)
+  '.td' ('text-decoration') ('-none' none, '-ul' underline),
+  '.t-shadow' ('text-shadow') (
+    '' "0 0 10px rgba(0,0,0,1)",
+    \+ "0 0 40px rgba(0,0,0,1)"
+  ),
+
+  // Images
+  '.header-image' ('background-image') (
+    // '-large'  url('http://lorempixel.com/1600/500/food'),
+    '-large' url('../images/tapas_plank.jpg'),
+    // '-medium' url('http://lorempixel.com/1024/500/food'),
+    '-medium' url('../images/tapas_plank.jpg'),
+    // '-small'  url('http://lorempixel.com/500/500/food')
+    '-small' url('../images/tapas_plank.jpg')
+  )
 
 ) !default;
 
@@ -178,13 +200,19 @@ $breakpoints: (
         $alias: nth($value, 1);
         $actual: nth($value, 2);
 
-        @include mediaquery($selector + $alias) {
-
-          @each $property in $properties {
-            #{$property}: #{$actual};
-          }
-        };
+        @include value($selector + $alias, $properties, $actual);
+        @include value($selector + $alias + \!, $properties, $actual + '!important');
     }
+}
+
+@mixin value($selector, $properties, $value) {
+
+    @include mediaquery($selector) {
+
+      @each $property in $properties {
+        #{$property}: #{$value};
+      }
+    };
 }
 
 @mixin properties($items) {
@@ -212,4 +240,15 @@ $breakpoints: (
 .box {
   display: inline-block;
   box-sizing: border-box;
+}
+
+
+.bg-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+.profile-image {
+  @extend .bg-image;
+  background-image: url('../images/tante_tien.jpg');
 }
