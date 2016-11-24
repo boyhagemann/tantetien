@@ -6,16 +6,18 @@ $color-primary: #06c;
 
 
 $fontSizes: (
+  0 0,
   '' $base-font-size,
   \-   ($base-font-size * 0.8),
   \-\-  ($base-font-size * 0.6),
   \+   ($base-font-size * 1.5),
-  \+\+  ($base-font-size * 2.5)
+  \+\+  ($base-font-size * 2.5),
+  \+\+\+  ($base-font-size * 4),
 ) !default;
 
 $fontFamilies: (
   '' Arial,
-  '-fancy' Verdana
+  '-fancy' '"Dancing Script", cursive'
 ) !default;
 
 
@@ -28,13 +30,16 @@ $spacings: (
   \+\+  ($base-spacing * 4)
 ) !default;
 
-$widths: (
+$dimensions: (
   1 100%,
   1\/2 50%,
   1\/3 33.333333333%,
   1\/4 25%,
   2\/3 66.666666667%,
   3\/4 75%,
+  '-small' 100px,
+  '-medium' 200px,
+  '-large' 400px
 ) !default;
 
 $colors: (
@@ -46,7 +51,6 @@ $colors: (
   \-primary\- darken($color-primary, 10%)
 ) !default;
 
-$texts: ('-uc' uppercase, '-lc' lowercase) !default;
 
 $properties: (
 
@@ -68,16 +72,49 @@ $properties: (
   '.pv' ('padding-top' 'padding-bottom') $spacings,
   '.ph' ('padding-left', 'padding-right') $spacings,
 
-  // Misc
-  '.w' ('width') $widths,
+  // Border
+  '.b' ('border') $spacings,
+  '.bt' ('border-top') $spacings,
+  '.bb' ('border-bottom') $spacings,
+  '.bl' ('border-left') $spacings,
+  '.br' ('border-right') $spacings,
+  '.bv' ('border-top' 'border-bottom') $spacings,
+  '.bh' ('border-left', 'border-right') $spacings,
+
+  // Dimensions
+  '.w' ('width') $dimensions,
+  '.h' ('height') $dimensions,
+
+  // Fonts
   '.ff' ('font-family') $fontFamilies,
   '.fs' ('font-size') $fontSizes,
+  '.fw' ('font-weight') ('' normal, '-bold' bold),
+  '.lh' ('line-height') $fontSizes,
+
+  // Colors
   '.c' ('color') $colors,
+  '.bc' ('border-color') $colors,
   '.bgc' ('background-color') $colors,
+
+  // Misc
+  '.bs' ('border-size') (\-\- 3px, \- 5px),
+  '.border' ('border-style') ('' solid, '-dashed' dashed),
+  '.rounded' ('border-radius') ('' 50%, \- 5px, \-\- 15px),
+  '.position' ('position') ('-absolute' absolute, '-relative' relative),
+  '.top' ('top') (\- $base-spacing*-1, \-\- $base-spacing*-2),
+
+  // Visibility
+  '.v' ('visibility') (
+    '-visible' visible,
+    '-hidden' hidden,
+    \-hidden\! 'hidden!important',
+    \-visible\! 'visible!important'
+  ),
 
   // Text
   '.tt' ('text-transform') ('-uc' uppercase, '-lc' lowercase),
   '.td' ('text-decoration') ('-none' none, '-ul' underline)
+
 ) !default;
 
 $breakpoints: (
@@ -130,7 +167,7 @@ $breakpoints: (
         @include mediaquery($selector + $alias) {
 
           @each $property in $properties {
-            #{$property}: $actual;
+            #{$property}: #{$actual};
           }
         };
     }
