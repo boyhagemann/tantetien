@@ -1,0 +1,164 @@
+
+$base-font-size: 20px;
+$base-spacing: 24px;
+
+$color-primary: #06c;
+
+
+$fontSizes: (
+  '' $base-font-size,
+  \-   ($base-font-size * 0.8),
+  \-\-  ($base-font-size * 0.6),
+  \+   ($base-font-size * 1.5),
+  \+\+  ($base-font-size * 2.5)
+) !default;
+
+$fontFamilies: (
+  '' Arial,
+  '-fancy' Verdana
+) !default;
+
+
+$spacings: (
+  0 0,
+  '' $base-spacing,
+  \-   ($base-spacing * .5),
+  \-\-  ($base-spacing * .25),
+  \+   ($base-spacing * 2),
+  \+\+  ($base-spacing * 4)
+) !default;
+
+$widths: (
+  1 100%,
+  1\/2 50%,
+  1\/3 33.333333333%,
+  1\/4 25%,
+  2\/3 66.666666667%,
+  3\/4 75%,
+) !default;
+
+$colors: (
+  '' #333,
+  '-dark' #333,
+  '-light' #f4f5f6,
+  '-blank' #fff,
+  '-primary' $color-primary,
+  \-primary\- darken($color-primary, 10%)
+) !default;
+
+$texts: ('-uc' uppercase, '-lc' lowercase) !default;
+
+$properties: (
+
+  // Margin
+  '.m' ('margin') $spacings,
+  '.mt' ('margin-top') $spacings,
+  '.mb' ('margin-bottom') $spacings,
+  '.ml' ('margin-left') $spacings,
+  '.mr' ('margin-right') $spacings,
+  '.mv' ('margin-top' 'margin-bottom') $spacings,
+  '.mh' ('margin-left', 'margin-right') $spacings,
+
+  // Padding
+  '.p' ('padding') $spacings,
+  '.pt' ('padding-top') $spacings,
+  '.pb' ('padding-bottom') $spacings,
+  '.pl' ('padding-left') $spacings,
+  '.pr' ('padding-right') $spacings,
+  '.pv' ('padding-top' 'padding-bottom') $spacings,
+  '.ph' ('padding-left', 'padding-right') $spacings,
+
+  // Misc
+  '.w' ('width') $widths,
+  '.ff' ('font-family') $fontFamilies,
+  '.fs' ('font-size') $fontSizes,
+  '.c' ('color') $colors,
+  '.bgc' ('background-color') $colors,
+
+  // Text
+  '.tt' ('text-transform') ('-uc' uppercase, '-lc' lowercase),
+  '.td' ('text-decoration') ('-none' none, '-ul' underline)
+) !default;
+
+$breakpoints: (
+    mobile          'screen and(max-width: 499px)',
+    tablet          'screen and(min-width: 500px) and(max-width: 1023px)',
+    tablet\-and\-up   'screen and(min-width: 500px)',
+    desk             'screen and(min-width: 1024px)',
+) !default;
+
+
+@mixin mediaquery($selector) {
+
+  @include create($selector) {
+    @content;
+  }
+
+  @each $breakpoint in $breakpoints {
+
+    $alias: nth($breakpoint, 1);
+    $query: nth($breakpoint, 2);
+
+    @include create($selector + \@ + $alias) {
+        @media #{$query} {
+            @content;
+        }
+    }
+
+  }
+
+}
+
+@mixin create($selector) {
+
+    #{$selector} {
+      @content;
+    }
+
+    #{$selector}\:hover:hover {
+      @content;
+    }
+}
+
+@mixin values($selector, $properties, $values) {
+
+    @each $value in $values {
+
+        $alias: nth($value, 1);
+        $actual: nth($value, 2);
+
+        @include mediaquery($selector + $alias) {
+
+          @each $property in $properties {
+            #{$property}: $actual;
+          }
+        };
+    }
+}
+
+@mixin properties($items) {
+
+    @each $item in $items {
+
+        $selector: nth($item, 1);
+        $properties: nth($item, 2);
+        $values: nth($item, 3);
+
+        @include values($selector, $properties, $values);
+    }
+}
+
+
+@include properties($properties);
+
+
+.centered {
+  margin: 0 auto;
+}
+.container {
+  max-width: 1200px;
+}
+.box {
+  display: inline-block;
+  box-sizing: border-box;
+}
