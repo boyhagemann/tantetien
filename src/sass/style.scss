@@ -52,6 +52,16 @@ $colors: (
 ) !default;
 
 
+$offsets: (
+  0 0,
+  '' $base-spacing,
+  \-   ($base-spacing * -1),
+  \-\-  ($base-spacing * -2),
+  \+   ($base-spacing * 1),
+  \+\+  ($base-spacing * 2)
+) !default;
+
+
 $properties: (
 
   // Margin
@@ -82,6 +92,7 @@ $properties: (
   '.bh' ('border-left', 'border-right') $spacings,
 
   // Dimensions
+  '.square' ('width', 'height') $dimensions,
   '.w' ('width') $dimensions,
   '.h' ('height') $dimensions,
 
@@ -101,7 +112,9 @@ $properties: (
   '.border' ('border-style') ('' solid, '-dashed' dashed),
   '.rounded' ('border-radius') ('' 50%, \- 5px, \-\- 15px),
   '.position' ('position') ('-absolute' absolute, '-relative' relative),
-  '.top' ('top') (\- $base-spacing*-1, \-\- $base-spacing*-2),
+  '.top' ('top') $offsets,
+  '.right' ('right') $offsets,
+  '.left' ('left') $offsets,
 
   // Visibility
   '.v' ('visibility') (
