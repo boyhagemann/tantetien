@@ -7844,6 +7844,120 @@
   .tt-lc\@desk\:hover:hover {
     text-transform: lowercase; } }
 
+.ta-center {
+  text-align: center; }
+
+.ta-center\:hover:hover {
+  text-align: center; }
+
+@media screen and (max-width: 499px) {
+  .ta-center\@mobile {
+    text-align: center; } }
+
+@media screen and (max-width: 499px) {
+  .ta-center\@mobile\:hover:hover {
+    text-align: center; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-center\@tablet {
+    text-align: center; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-center\@tablet\:hover:hover {
+    text-align: center; } }
+
+@media screen and (min-width: 500px) {
+  .ta-center\@tablet\-and\-up {
+    text-align: center; } }
+
+@media screen and (min-width: 500px) {
+  .ta-center\@tablet\-and\-up\:hover:hover {
+    text-align: center; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-center\@desk {
+    text-align: center; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-center\@desk\:hover:hover {
+    text-align: center; } }
+
+.ta-left {
+  text-align: left; }
+
+.ta-left\:hover:hover {
+  text-align: left; }
+
+@media screen and (max-width: 499px) {
+  .ta-left\@mobile {
+    text-align: left; } }
+
+@media screen and (max-width: 499px) {
+  .ta-left\@mobile\:hover:hover {
+    text-align: left; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-left\@tablet {
+    text-align: left; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-left\@tablet\:hover:hover {
+    text-align: left; } }
+
+@media screen and (min-width: 500px) {
+  .ta-left\@tablet\-and\-up {
+    text-align: left; } }
+
+@media screen and (min-width: 500px) {
+  .ta-left\@tablet\-and\-up\:hover:hover {
+    text-align: left; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-left\@desk {
+    text-align: left; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-left\@desk\:hover:hover {
+    text-align: left; } }
+
+.ta-right {
+  text-align: right; }
+
+.ta-right\:hover:hover {
+  text-align: right; }
+
+@media screen and (max-width: 499px) {
+  .ta-right\@mobile {
+    text-align: right; } }
+
+@media screen and (max-width: 499px) {
+  .ta-right\@mobile\:hover:hover {
+    text-align: right; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-right\@tablet {
+    text-align: right; } }
+
+@media screen and (min-width: 500px) and (max-width: 1023px) {
+  .ta-right\@tablet\:hover:hover {
+    text-align: right; } }
+
+@media screen and (min-width: 500px) {
+  .ta-right\@tablet\-and\-up {
+    text-align: right; } }
+
+@media screen and (min-width: 500px) {
+  .ta-right\@tablet\-and\-up\:hover:hover {
+    text-align: right; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-right\@desk {
+    text-align: right; } }
+
+@media screen and (min-width: 1024px) {
+  .ta-right\@desk\:hover:hover {
+    text-align: right; } }
+
 .td-none {
   text-decoration: none; }
 

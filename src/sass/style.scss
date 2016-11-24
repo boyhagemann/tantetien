@@ -113,6 +113,7 @@ $properties: (
 
   // Text
   '.tt' ('text-transform') ('-uc' uppercase, '-lc' lowercase),
+  '.ta' ('text-align') ('-center' center, '-left' left, '-right' right),
   '.td' ('text-decoration') ('-none' none, '-ul' underline)
 
 ) !default;
